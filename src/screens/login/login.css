@@ -1,13 +1,20 @@
-.body{
+.login-body{
+    background-color: #E7ECF0;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh; /* Full height of the viewport */
+}
+
+.login-content{
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
     background-color: #E7ECF0;
 }
 
-.login {
+.login-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,10 +28,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -220px;
+    margin-top: 10;
 }
 
-.input{
+.login-input{
     width: 300px;
     height: 45px;
     margin: 10px;
@@ -34,7 +41,7 @@
     font-size: 18px;
 }
 
-.button{
+.login-button{
     width: 300px;
     height: 40px;
     margin: 10px;
