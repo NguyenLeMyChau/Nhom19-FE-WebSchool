@@ -5,7 +5,7 @@ function Login() {
   return (
     <div className='body'>
       <div className='login'>
-        <h1 style={{marginTop: 50, color: '#006AF5'}}>Login</h1>
+        <h1 style={{marginTop: 40, color: '#006AF5'}}>Login</h1>
         <form className='login-form'>
           <input type='text' placeholder='Username' className='input'/> <br/>
           <input type='password' placeholder='Password' className='input'/> <br/>
