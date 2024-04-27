@@ -1,11 +1,11 @@
 import React from 'react'
 import './App.css'
-import Login from './screens/login/login'
+import Home from './screens/home/home'
 
 
 const App = () => {
   return (
-    <Login />
+    <Home />
   )
 }
 export default App
