@@ -1,0 +1,36 @@
+.AcademicResult-result-title h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 10px;
+
+}
+
+.AcademicResult-table-custom {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.AcademicResult-table-custom th {
+    background-color: #f3f7f9;
+    color: var(--colorActive);
+}
+
+.AcademicResult-table-custom th,
+.AcademicResult-table-custom td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.AcademicResult-table-custom th div,
+.AcademicResult-table-custom td div {
+    margin: auto;
+}
+
+.semester {
+    font-weight: 700;
+    color: #578ebe;
+    background-color: #f5f5f5;
+    text-align: left !important;
+}
