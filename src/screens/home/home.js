@@ -3,6 +3,7 @@ import './home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import Header from '../../components/header/header';
 
 function Home() {
     const [selectedOption, setSelectedOption] = useState('');
@@ -21,6 +22,7 @@ function Home() {
 
     return (
         <div className='home-body'>
+            <Header/>
             <div className='home-head'>
                 <div className='home-info'>
                     <h3 className='home-text-head'>Thông tin sinh viên</h3>
@@ -91,14 +93,14 @@ function Home() {
                     <div className='home-schedule-calendar'>
                         <div className='home-schedule-calendar-text' style={{ backgroundColor: '#e0fbff', color: '#4da1e8' }}>
                             <p>Lịch học trong tuần</p>
-                            <p style={{ fontSize: 42, lineHeight: 1, marginTop: -5 }}>4</p>
-                            <p style={{ fontSize: 14, lineHeight: 1, marginTop: -6 }}>Xem chi tiết</p>
+                            <p style={{ fontSize: 42, lineHeight: 1, marginTop: -3 }}>4</p>
+                            <p style={{ fontSize: 14, lineHeight: 1, marginTop: -3 }}>Xem chi tiết</p>
                         </div>
 
                         <div className='home-schedule-calendar-text' style={{ backgroundColor: '#fff2d4', color: '#ff9205' }}>
                             <p>Lịch thi trong tuần</p>
-                            <p style={{ fontSize: 42, lineHeight: 1, marginTop: -5 }}>0</p>
-                            <p style={{ fontSize: 14, lineHeight: 1, marginTop: -6 }}>Xem chi tiết</p>
+                            <p style={{ fontSize: 42, lineHeight: 1, marginTop: -3 }}>0</p>
+                            <p style={{ fontSize: 14, lineHeight: 1, marginTop: -3 }}>Xem chi tiết</p>
                         </div>
                     </div>
                 </div>
