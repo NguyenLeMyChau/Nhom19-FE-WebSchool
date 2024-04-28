@@ -1,0 +1,53 @@
+.navbar {
+    width: 200px;
+    background: white;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li {
+    border-bottom: 1px solid #ddd;
+
+}
+
+.navbar ul li:last-child {
+    border-bottom: none;
+
+}
+
+.navbar ul li a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--textColor);
+
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    color: var(--colorActive);
+
+}
+
+.sub-navbar {
+    display: none;
+
+}
+
+
+.selected .sub-navbar {
+    display: block;
+}
+
+
+.navbar ul li.selected>a {
+    color: var(--colorActive);
+}
+
+
+.navbar ul li ul li {
+    border-bottom: none;
+}

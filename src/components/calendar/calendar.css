@@ -1,0 +1,195 @@
+.student-calendar {
+
+    padding: 20px;
+    background-color: #fff;
+}
+
+.calendar-header {
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+
+.radio-label input[type="radio"] {
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+}
+
+.radio-text {
+    margin-left: 5px;
+    color: var(--textColor);
+    font-weight: 500;
+}
+
+.calendar-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+
+.date-picker {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.date-input {
+    width: 150px;
+    height: 30px;
+    border-radius: 2px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.btn-hientai,
+.btn-inlich,
+.btn-trove,
+.btn-tieptuc {
+    height: 25px;
+    background-color: #007bff;
+    /* Màu xanh */
+    color: #fff;
+    /* Màu chữ trắng */
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Loại bỏ đường viền */
+    padding: 5px 5px;
+    /* Padding cho nút */
+    border-radius: 3px;
+    /* Bo tròn góc */
+    cursor: pointer;
+    /* Biến con trỏ thành dấu nhấp chuột */
+    margin-right: 10px;
+    /* Khoảng cách giữa các nút */
+}
+
+
+.calendar-table {
+
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-table th,
+.calendar-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+
+}
+
+.calendar-table th {
+    font-weight: 600;
+    color: var(--colorActive);
+    font-size: 14px;
+    background-color: #daebf0;
+}
+
+.study {
+    font-weight: 600;
+    background-color: rgb(250, 253, 186);
+    font-size: 14px;
+
+}
+
+.legend {
+    display: flex;
+    align-items: center;
+    /* Căn giữa các mục trong legend theo chiều dọc */
+    margin-top: 20px;
+    /* Khoảng cách giữa phần chú thích và bảng lịch */
+}
+
+.legend ul {
+    list-style: none;
+    /* Xóa dấu đầu dòng của danh sách */
+    padding: 0;
+    /* Xóa padding mặc định */
+    margin: 0;
+    /* Xóa margin mặc định */
+    display: flex;
+    /* Sắp xếp các mục trong danh sách theo chiều ngang */
+}
+
+.legend li {
+    margin-right: 20px;
+    /* Khoảng cách giữa các mục trong danh sách */
+}
+
+.legend li:last-child {
+    margin-right: 0;
+    /* Loại bỏ margin-right của mục cuối cùng */
+}
+
+.legend li span {
+    display: inline-block;
+    width: 20px;
+    /* Độ rộng của mẫu màu */
+    height: 20px;
+    /* Độ cao của mẫu màu */
+    margin-right: 10px;
+    /* Khoảng cách giữa mẫu màu và nhãn */
+}
+
+/* Màu sắc của các mẫu màu */
+.colorSTLichHocLT {
+    background-color: #e7ecf0;
+    /* Màu cho lịch học */
+}
+
+.colorSTLichHocTH {
+    background-color: #71cb35;
+    /* Màu cho lịch học */
+}
+
+.colorSTLichHoc {
+    background-color: #92d6ff;
+}
+
+.colorSTLichThi {
+    background-color: #fdff9a;
+    /* Màu cho lịch thi */
+}
+
+.colorSTTamNgung {
+    background: linear-gradient(#f14f3f 0, #cb4335 100%);
+
+    /* Màu cho lịch tạm ngưng */
+}
+
+/* Kiểu chữ cho nhãn */
+.legend label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    /* Màu chữ */
+}
+
+.lesonData {
+    font-size: 10px;
+    width: 100px;
+}
+
+.dayOfWeek {
+    text-align: center;
+}
+
+
+.legend label {
+    font-weight: normal;
+    color: var(--textColor);
+    font-size: 12px;
+}
+
+.legend ul li span {
+    height: 12px;
+    width: 40px;
+}
