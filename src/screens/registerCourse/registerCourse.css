@@ -1,0 +1,344 @@
+.RegisterCourse-body {
+    background-color: #E7ECF0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: "auto";
+    margin-bottom: 50px;
+}
+
+.RegisterCourse-body-head {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-left: 5px solid rgb(216, 143, 6);
+    margin-bottom: 20px;
+}
+
+.RegisterCourse-body-head h6 {
+    color: rgb(216, 143, 6);
+    font-weight: 600;
+}
+
+.RegisterCourse-head {
+    width: 80%;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding-top: 20px;
+}
+
+.RegisterCourse-head h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #384289;
+    margin-bottom: 30px;
+}
+
+.RegisterCourse-head-text {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.RegisterCourse-head-text span {
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 30px;
+}
+
+.RegisterCourse-head-text input[type="radio"] {
+    transform: scale(0.4);
+    margin-right: -105px;
+}
+
+.RegisterCourse-head-text-radio-option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.RegisterCourse-content {
+    width: 80%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding-top: 30px;
+}
+
+
+.RegisterCourse-content table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.RegisterCourse-content th,
+.RegisterCourse-content td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #384289;
+}
+
+.RegisterCourse-content th {
+    background-color: #384289;
+    /* Tô màu cho header của bảng */
+    color: white;
+    border: 1px solid white;
+}
+
+.RegisterCourse-content input[type="radio"] {
+    transform: scale(0.4);
+    margin-left: -100px;
+}
+
+
+.RegisterCourse-content table th:nth-child(1) {
+    width: 5%;
+    /* Điều chỉnh kích thước cột chứa radio button */
+}
+
+
+.RegisterCourse-content table th:nth-child(2) {
+    width: 5%;
+    /* Điều chỉnh kích thước cột STT */
+}
+
+.RegisterCourse-content table th:nth-child(3) {
+    width: 15%;
+    /* Điều chỉnh kích thước cột Mã HP */
+}
+
+.RegisterCourse-content table th:nth-child(4) {
+    width: 30%;
+    /* Điều chỉnh kích thước cột Tên môn học */
+}
+
+.RegisterCourse-content table th:nth-child(5) {
+    width: 10%;
+    /* Điều chỉnh kích thước cột TC */
+}
+
+.RegisterCourse-content table th:nth-child(6) {
+    width: 10%;
+    /* Điều chỉnh kích thước cột Bắt buộc */
+}
+
+.RegisterCourse-content table th:nth-child(7) {
+    width: 25%;
+    /* Điều chỉnh kích thước cột Học phần: Học trước (a), tiên quyết (b), song hành (c) */
+}
+
+.RegisterCourse-contentClass {
+    width: 80%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding-top: 30px;
+}
+
+.RegisterCourse-contentClass-head-cb {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+.RegisterCourse-contentClass input[type="checkbox"] {
+    transform: scale(0.5);
+    margin-right: -100px;
+}
+
+.RegisterCourse-contentClass table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.RegisterCourse-contentClass th,
+.RegisterCourse-contentClass td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #384289;
+}
+
+.RegisterCourse-contentClass th {
+    background-color: #384289;
+    /* Tô màu cho header của bảng */
+    color: white;
+    border: 1px solid white;
+}
+
+.RegisterCourse-contentClass input[type="radio"] {
+    transform: scale(0.4);
+    margin-left: -100px;
+}
+
+.RegisterCourse-contentClass th:nth-child(1) {
+    width: 5%;
+}
+
+.RegisterCourse-contentClass th:nth-child(2) {
+    width: 5%;
+}
+
+.RegisterCourse-contentClass th:nth-child(3) {
+    width: 10%;
+}
+
+.RegisterCourse-contentClass th:nth-child(4) {
+    width: 30%;
+}
+
+.RegisterCourse-contentClass th:nth-child(5) {
+    width: 10%;
+}
+
+.RegisterCourse-contentClass th:nth-child(6) {
+    width: 10%;
+}
+
+.RegisterCourse-contentClass th:nth-child(7) {
+    width: 10%;
+}
+
+.RegisterCourse-contentClass th:nth-child(8) {
+    width: 15%;
+}
+
+.RegisterCourse-class {
+    width: 80%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding-top: 30px;
+}
+
+.RegisterCourse-class table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 30px;
+}
+
+.RegisterCourse-class th,
+.RegisterCourse-class td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #384289;
+}
+
+.RegisterCourse-class th {
+    background-color: #384289;
+    /* Tô màu cho header của bảng */
+    color: white;
+    border: 1px solid white;
+}
+
+.RegisterCourse-class th:nth-child(1) {
+    width: 5%;
+}
+
+.RegisterCourse-class-btn {
+    background-color:  rgb(216, 143, 6);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.RegisterCourse-semester {
+    width: 80%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding-top: 30px;
+}
+
+.RegisterCourse-semester table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 30px;
+}
+
+.RegisterCourse-semester th,
+.RegisterCourse-semester td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #384289;
+}
+
+.RegisterCourse-semester th {
+    background-color: #384289;
+    /* Tô màu cho header của bảng */
+    color: white;
+    border: 1px solid white;
+}
+
+.RegisterCourse-semester th:nth-child(1) {
+    width: 5%;
+}
+
+.RegisterCourse-semester th:nth-child(2) {
+    width: 5%;
+}
+
+.RegisterCourse-semester th:nth-child(3) {
+    width: 15%;
+}
+
+.RegisterCourse-semester th:nth-child(5) {
+    width: 15%;
+}
+
+.RegisterCourse-semester th:nth-child(6) {
+    width: 5%;
+}
+
+
+.RegisterCourse-semester th:nth-child(7) {
+    width: 10%;
+}
+
+.RegisterCourse-semester th:nth-child(8) {
+    width: 10%;
+}
+
+.RegisterCourse-semester th:nth-child(9) {
+    width: 10%;
+}

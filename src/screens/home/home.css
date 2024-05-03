@@ -91,11 +91,11 @@
     margin-top: 10px;
 }
 
-p {
+.home-form-group p {
     font-size: 14px;
 }
 
-span {
+.home-form-group span {
     font-weight: 600;
     color:#384289;
 }
