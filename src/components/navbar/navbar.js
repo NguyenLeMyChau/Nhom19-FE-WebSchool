@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './navbar.css'; // Import stylesheet
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faInfoCircle, faDisplay, faBook, faPencilSquare, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faDisplay, faBook, faPencilSquare, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 
 import { Link } from 'react-router-dom';
 

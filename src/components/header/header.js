@@ -1,18 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './header.css'
 
 function Options() {
+
+  const handleLogout = () => {
+    localStorage.removeItem('student'); // Xóa student khỏi localStorage
+    window.location.href = '/login'; // Chuyển hướng về trang login
+  }
+  
   return (
     <div className='options'>
       <p className='clickable-p'>Thông tin cá nhân</p>
       <p className='clickable-p'>Đổi mật khẩu</p>
-      <p className='clickable-p'>Đăng xuất</p>
+      <p className='clickable-p' onClick={handleLogout}>Đăng xuất</p>
     </div>
   )
 }
 
 function Header() {
   const [showOptions, setShowOptions] = useState(false);
+
+  const [student, setStudent] = useState(null);
+
+  useEffect(() => {
+    const storedStudent = localStorage.getItem('student');
+    console.log('storedStudent: ', storedStudent)
+    if (storedStudent) {
+      setStudent(JSON.parse(storedStudent));
+    }
+  }, []);
 
   const handleClick = () => {
     setShowOptions(!showOptions);
@@ -34,7 +50,7 @@ function Header() {
               alt="Student Information"
               className='header-img'
             />
-            Nguyễn Lê Mỹ Châu
+            {student ? student.name : ''}
           </p>
           {showOptions && <Options />}
         </div>

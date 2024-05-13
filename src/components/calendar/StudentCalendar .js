@@ -14,60 +14,58 @@ const StudentCalendar = () => {
 
     const [currentDate, setCurrentDate] = useState(getStartOfWeek(new Date()));
 
-    const data = [
-        {
-
-
-            "Tên môn": "Lập trình hướng đối tượng",
-            "Tên lớp": "DHKTPM16A",
-            "Mã môn": "737338484986",
-            "lịch học": [
-                { "islyThuyet": 0, "Tiết học": "1-3", "dayofweek": "Thứ 2" },
-                { "islyThuyet": 1, "Tiết học": "1-3", "dayofweek": "Thứ 3" }
-            ],
-            "Giáo viên": "Nguyễn Văn A"
-        },
-        {
-            "Tên môn": "Cơ sở dữ liệu",
-            "Tên lớp": "DHKTPM16A",
-            "Mã môn": "832948327944",
-            "lịch học": [
-                { "islyThuyet": 1, "Tiết học": "4-6", "dayofweek": "Thứ 4" },
-                { "islyThuyet": 0, "Tiết học": "7-9", "dayofweek": "Thứ 5" }
-            ],
-            "Giáo viên": "Trần Thị B"
-        },
-        {
-            "Tên môn": "Toán cao cấp",
-            "Tên lớp": "DHKTPM16A",
-            "Mã môn": "949592827111",
-            "lịch học": [
-                { "islyThuyet": 1, "Tiết học": "1-3", "dayofweek": "Thứ 6" },
-                { "islyThuyet": 0, "Tiết học": "4-6", "dayofweek": "Thứ 7" }
-            ],
-            "Giáo viên": "Phạm Văn C"
-        },
-        {
-            "Tên môn": "Toán cao cấp 2",
-            "Tên lớp": "DHKTPM16A",
-            "Mã môn": "949592827111",
-            "lịch học": [
-                { "islyThuyet": 1, "Tiết học": "1-3", "dayofweek": "Chủ nhật" },
-                { "islyThuyet": 0, "Tiết học": "4-6", "dayofweek": "Chủ nhật" }
-            ],
-            "Giáo viên": "Phạm khkfhskf"
-        },
-        {
-            "Tên môn": "Toán cao cấp 1",
-            "Tên lớp": "DHKTPM16A",
-            "Mã môn": "949592827111",
-            "lịch học": [
-                { "islyThuyet": 1, "Tiết học": "13-15", "dayofweek": "2024-04-27" },
-                { "islyThuyet": 0, "Tiết học": "4-6", "dayofweek": "2024-04-27" }
-            ],
-            "Giáo viên": "Phạm khkfhskf"
-        }
-    ];
+    // const data = [
+    //     {
+    //         "Tên môn": "Lập trình hướng đối tượng",
+    //         "Tên lớp": "DHKTPM16A",
+    //         "Mã môn": "737338484986",
+    //         "lịch học": [
+    //             { "islyThuyet": 0, "Tiết học": "1-3", "dayofweek": "Thứ 2" },
+    //             { "islyThuyet": 1, "Tiết học": "1-3", "dayofweek": "Thứ 3" }
+    //         ],
+    //         "Giáo viên": "Nguyễn Văn A"
+    //     },
+    //     {
+    //         "Tên môn": "Cơ sở dữ liệu",
+    //         "Tên lớp": "DHKTPM16A",
+    //         "Mã môn": "832948327944",
+    //         "lịch học": [
+    //             { "islyThuyet": 1, "Tiết học": "4-6", "dayofweek": "Thứ 4" },
+    //             { "islyThuyet": 0, "Tiết học": "7-9", "dayofweek": "Thứ 5" }
+    //         ],
+    //         "Giáo viên": "Trần Thị B"
+    //     },
+    //     {
+    //         "Tên môn": "Toán cao cấp",
+    //         "Tên lớp": "DHKTPM16A",
+    //         "Mã môn": "949592827111",
+    //         "lịch học": [
+    //             { "islyThuyet": 1, "Tiết học": "1-3", "dayofweek": "Thứ 6" },
+    //             { "islyThuyet": 0, "Tiết học": "4-6", "dayofweek": "Thứ 7" }
+    //         ],
+    //         "Giáo viên": "Phạm Văn C"
+    //     },
+    //     {
+    //         "Tên môn": "Toán cao cấp 2",
+    //         "Tên lớp": "DHKTPM16A",
+    //         "Mã môn": "949592827111",
+    //         "lịch học": [
+    //             { "islyThuyet": 1, "Tiết học": "1-3", "dayofweek": "Chủ nhật" },
+    //             { "islyThuyet": 0, "Tiết học": "4-6", "dayofweek": "Chủ nhật" }
+    //         ],
+    //         "Giáo viên": "Phạm khkfhskf"
+    //     },
+    //     {
+    //         "Tên môn": "Toán cao cấp 1",
+    //         "Tên lớp": "DHKTPM16A",
+    //         "Mã môn": "949592827111",
+    //         "lịch học": [
+    //             { "islyThuyet": 1, "Tiết học": "13-15", "dayofweek": "2024-04-27" },
+    //             { "islyThuyet": 0, "Tiết học": "4-6", "dayofweek": "2024-04-27" }
+    //         ],
+    //         "Giáo viên": "Phạm khkfhskf"
+    //     }
+    // ];
 
     const getWeekday = (date) => {
         const weekdays = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];

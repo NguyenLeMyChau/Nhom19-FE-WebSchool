@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
@@ -7,6 +7,15 @@ import Header from '../../components/header/header';
 
 function Home() {
     const [selectedOption, setSelectedOption] = useState('');
+    const [student, setStudent] = useState(null);
+
+    useEffect(() => {
+        const storedStudent = localStorage.getItem('student');
+        console.log('storedStudent: ', storedStudent)
+        if (storedStudent) {
+            setStudent(JSON.parse(storedStudent));
+        }
+    }, []);
 
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
@@ -15,14 +24,14 @@ function Home() {
     // Tổng số
     const total = 156;
     // Số đạt được
-    const achieved = 125;
+    const achieved = student ? student.completedCredits : 0;
 
     // Tính toán phần trăm
     const percentage = (achieved / total) * 100;
 
     return (
         <div className='home-body'>
-            <Header/>
+            <Header />
             <div className='home-head'>
                 <div className='home-info'>
                     <h3 className='home-text-head'>Thông tin sinh viên</h3>
@@ -36,7 +45,7 @@ function Home() {
                         <div className='home-info-head-info'>
                             <div className='home-form-group'>
                                 <div className='col-lg-6'>
-                                    <p>MSSV: <span>20046631</span></p>
+                                    <p>MSSV: <span>{student ? student.id : ''}</span></p>
                                 </div>
                                 <div className='col-lg-6'>
                                     <p>Lớp học: <span>DHKTPM16A</span></p>
@@ -45,16 +54,16 @@ function Home() {
 
                             <div className='home-form-group'>
                                 <div className='col-lg-6'>
-                                    <p>Họ tên: <span>Nguyễn Lê Mỹ Châu</span></p>
+                                    <p>Họ tên: <span>{student ? student.name : ''}</span></p>
                                 </div>
                                 <div className='col-lg-6'>
-                                    <p>Khóa học: <span>2020 - 2021</span></p>
+                                    <p>Khóa học: <span>{student ? student.course : ''}</span></p>
                                 </div>
                             </div>
 
                             <div className='home-form-group'>
                                 <div className='col-lg-6'>
-                                    <p>Giới tính: <span>Nữ</span></p>
+                                    <p>Giới tính: <span>{student && student.gender ? 'Nữ' : 'Nam'}</span></p>
                                 </div>
                                 <div className='col-lg-6'>
                                     <p>Bậc đào tạo: <span>Đại học</span></p>
@@ -63,7 +72,7 @@ function Home() {
 
                             <div className='home-form-group'>
                                 <div className='col-lg-6'>
-                                    <p>Ngày sinh: <span>12/01/2002</span></p>
+                                    <p>Ngày sinh: <span>{student ? student.dateOfBirth : ''}</span></p>
                                 </div>
                                 <div className='col-lg-6'>
                                     <p>Loại hình đào tạo: <span>Chính quy</span></p>
@@ -72,10 +81,10 @@ function Home() {
 
                             <div className='home-form-group'>
                                 <div className='col-lg-6'>
-                                    <p>Nơi sinh: <span>Thành phố Hồ Chí Minh</span></p>
+                                    <p>Nơi sinh: <span>{student ? student.address : ''}</span></p>
                                 </div>
                                 <div className='col-lg-6'>
-                                    <p>Ngành: <span>Kỹ thuật phần mềm</span></p>
+                                    <p>Ngành: <span>{student ? student.major.name : ''}</span></p>
                                 </div>
                             </div>
 
@@ -110,16 +119,16 @@ function Home() {
             <div className='home-option'>
 
                 <div className='col-sm-2 home-option-form'>
-                    <p>Lịch theo tuần</p>
+                    <p onClick={() => window.location.href = '/schedule'}>Lịch theo tuần</p>
                 </div>
 
                 <div className='col-sm-2 home-option-form'>
-                    <p>Kết quả học tập</p>
+                    <p onClick={() => window.location.href = '/AcademicResult'}>Kết quả học tập</p>
 
                 </div>
 
                 <div className='col-sm-2 home-option-form'>
-                    <p>Đăng ký học phần</p>
+                    <p onClick={() => window.location.href = '/RegisterCourse'}>Đăng ký học phần</p>
                 </div>
 
                 <div className='col-sm-2 home-option-form'>
@@ -165,7 +174,7 @@ function Home() {
                             />
 
                         </div>
-                        <p style={{marginTop: 20, fontSize: 18}}>{`${achieved}/${total}`}</p>
+                        <p style={{ marginTop: 20, fontSize: 18 }}>{`${achieved}/${total}`}</p>
 
                     </div>
 
