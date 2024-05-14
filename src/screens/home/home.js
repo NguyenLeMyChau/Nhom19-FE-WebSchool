@@ -21,6 +21,12 @@ function Home() {
         setSelectedOption(event.target.value);
     }
 
+    const navigateToSchedule = () => {
+        if (student && student.id) {
+            window.location.href = `/schedule?studentId=${student.id}`;
+        }
+    };
+
     // Tổng số
     const total = 156;
     // Số đạt được
@@ -119,7 +125,7 @@ function Home() {
             <div className='home-option'>
 
                 <div className='col-sm-2 home-option-form'>
-                    <p onClick={() => window.location.href = '/schedule'}>Lịch theo tuần</p>
+                    <p onClick={navigateToSchedule}>Lịch theo tuần</p>
                 </div>
 
                 <div className='col-sm-2 home-option-form'>

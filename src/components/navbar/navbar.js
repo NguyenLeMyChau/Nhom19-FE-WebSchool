@@ -17,7 +17,7 @@ const NavigationBar = ({ className }) => {
 
   const dangKyHocPhanItems = [
     { title: "Chương trình khung", value: "framework-program" },
-    { title: "Đăng ký học phần", value: "CourseRegistration" }
+    { title: "Đăng ký học phần", value: "RegisterCourse" }
   ];
 
   const hocPhiItems = [
@@ -32,7 +32,7 @@ const NavigationBar = ({ className }) => {
   return (
     <div className="navbar">
       <ul>
-        <li><Link to="/"><FontAwesomeIcon icon={faHome} /> Trang chủ</Link></li>
+        <li><Link to="/home"><FontAwesomeIcon icon={faHome} /> Trang chủ</Link></li>
         <li><Link to="/general-information"><FontAwesomeIcon icon={faDisplay} /> Thông tin chung</Link></li>
         <li className={selectedNavItem === "Học tập" ? "selected" : ""}>
           <Link to="#" onClick={() => handleNavItemClick("Học tập")}><FontAwesomeIcon icon={faBook} /> Học tập</Link>

@@ -68,7 +68,7 @@
     /* Bo tròn góc */
     cursor: pointer;
     /* Biến con trỏ thành dấu nhấp chuột */
-    margin-right: 10px;
+    margin-left: 10px;
     /* Khoảng cách giữa các nút */
 }
 
@@ -82,7 +82,7 @@
 .calendar-table th,
 .calendar-table td {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 8px;
 
 }
 
@@ -192,4 +192,28 @@
 .legend ul li span {
     height: 12px;
     width: 40px;
+}
+
+.tbody-calendar {
+    width: 90px;
+}
+
+.lesson-calendar {
+    /* font-size: 12px; */
+    border: 1px solid #c9d0db;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: #e7ecf0;
+    color: #003763;
+    margin-bottom: 5px;
+}
+
+.lesson-calendar p {
+    font-size: 12px;
+    margin: 0;
+
+}
+
+.subject-calendar {
+    font-weight: 700;
 }
