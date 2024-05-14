@@ -8,24 +8,27 @@ function Login() {
   const [password, setPassword] = useState('')
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    try {
+      event.preventDefault();
 
-    const url = 'http://localhost:8081/login/'
-    const response = await axios.post(url, {
-      username: username,
-      password: password
-    })
+      const url = 'http://localhost:8081/login/'
+      const response = await axios.post(url, {
+        username: username,
+        password: password
+      });
 
-    console.log('response.data: ', response.data)
+      console.log('response.data: ', response.data);
 
-    if (response.data) {
-      alert(response.data.message)
-      console.log('response.data.object: ', response.data.object)
-      localStorage.setItem('student', JSON.stringify(response.data.object))
-      window.location.href = '/home'
-    } else {
-      alert(response.data.message)
+      alert(response.data.message);
+      console.log('response.data.object: ', response.data.object);
+      localStorage.setItem('student', JSON.stringify(response.data.object));
+      window.location.href = '/home';
+
+    } catch (error) {
+      console.log(error);
+      alert(error.response.data.message);
     }
+
   }
 
   return (

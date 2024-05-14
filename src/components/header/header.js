@@ -5,7 +5,7 @@ function Options() {
 
   const handleLogout = () => {
     localStorage.removeItem('student'); // Xóa student khỏi localStorage
-    window.location.href = '/login'; // Chuyển hướng về trang login
+    window.location.href = '/'; // Chuyển hướng về trang login
   }
   
   return (
