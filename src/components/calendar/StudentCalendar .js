@@ -60,6 +60,11 @@ const StudentCalendar = () => {
         );
     });
 
+    const handleDateChange = (event) => {
+        const selectedDate = new Date(event.target.value);
+        setCurrentDate(getStartOfWeek(selectedDate));
+    };
+
     const [schedule, setSchedule] = useState([]);
     // const [studentId, setStudentId] = useState(null);
     const [student, setStudent] = useState(null);
@@ -76,7 +81,7 @@ const StudentCalendar = () => {
 
     const fetchScheduleData = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:8081/schedule/${id}`);
+            const response = await axios.get(`http://localhost:8081/${id}/schedule`);
             if (response.status === 200) {
                 setSchedule(response.data.object);
                 console.log(response.data.object);
@@ -156,6 +161,17 @@ const StudentCalendar = () => {
                             <input id="rdoLoaiLich3" name="rdoLoaiLich" type="radio" value="2" />
                             <span className="radio-text" >Lịch thi</span>
                         </label>
+                    </div>
+                    <div className="date-picker">
+                        {/* Trường nhập liệu ngày */}
+                        {/* <input id="dateNgayXemLich" name="dateNgayXemLich" type="date" className="date-input" /> */}
+                        <input
+                            id="dateNgayXemLich"
+                            name="dateNgayXemLich"
+                            type="date"
+                            className="date-input"
+                            onChange={handleDateChange} // Xử lý sự kiện thay đổi giá trị ngày
+                        />
                     </div>
                     {/* Calendar navigation buttons */}
                     <button className='btn-hientai' onClick={handleToday}><FontAwesomeIcon icon={faCalendarDays} />Hiện tại</button>
