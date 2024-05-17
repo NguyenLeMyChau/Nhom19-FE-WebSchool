@@ -207,28 +207,13 @@
 }
 
 .RegisterCourse-contentClass th:nth-child(3) {
-    width: 10%;
-}
-
-.RegisterCourse-contentClass th:nth-child(4) {
-    width: 30%;
-}
-
-.RegisterCourse-contentClass th:nth-child(5) {
-    width: 10%;
-}
-
-.RegisterCourse-contentClass th:nth-child(6) {
-    width: 10%;
-}
-
-.RegisterCourse-contentClass th:nth-child(7) {
-    width: 10%;
+    width: 5%;
 }
 
 .RegisterCourse-contentClass th:nth-child(8) {
-    width: 15%;
+    width: 7%;
 }
+
 
 .RegisterCourse-class {
     width: 80%;
@@ -266,7 +251,7 @@
     width: 5%;
 }
 
-.RegisterCourse-class-btn {
+.RegisterCourse-contentClass-btn {
     background-color:  rgb(216, 143, 6);
     border: none;
     color: white;
@@ -276,6 +261,7 @@
     display: inline-block;
     font-size: 15px;
     cursor: pointer;
+    margin-top: 30px;
 }
 
 .RegisterCourse-semester {
@@ -341,4 +327,13 @@
 
 .RegisterCourse-semester th:nth-child(9) {
     width: 10%;
+}
+
+.RegisterCourse-class input[type="radio"] {
+    transform: scale(0.5);
+    margin-left: -100px;
+}
+
+.RegisterCourse-class th:nth-child(2) {
+    width: 5%;
 }
