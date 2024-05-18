@@ -47,6 +47,8 @@ function RegisterCourse() {
   const handleRadioSubject = async (event) => { // new handler for radio buttons
     setSelectedRadioSubject(event.target.value);
 
+    const selectedItem = tableData.find(item => item.subjectId === event.target.value);
+
     const classesUrl = `http://localhost:8081/course/classes/${event.target.value}?semesterId=${selectedOption}`;
     const response = await axios.get(classesUrl);
 
@@ -68,7 +70,9 @@ function RegisterCourse() {
         ...item,
         schedule,
         status,
-        students
+        students,
+        parent: selectedItem.parentId,
+        subjectName: selectedItem.name
       };
     }));
     console.log('Data with id:', dataWithId);
@@ -105,10 +109,20 @@ function RegisterCourse() {
       return;
     }
 
+    if (selectedClass.parent !== null) {
+      const gradeUrl = `http://localhost:8081/course/${studentId}/grades`;
+      const responseGrade = await axios.get(gradeUrl);
+      const grades = responseGrade.data;
+      const isParentInGrades = grades.some(grade => grade.subjectId === selectedClass.parent);
+      if (isParentInGrades === false) {
+        alert(`Không thể đăng ký môn học này do chưa học môn tiên quyết: ${selectedClass.subjectName}`);
+        return;
+      }
+    }
+
     const currentSemesterUrl = `http://localhost:8081/course/${studentId}/duplicate-schedules?semesterId=${currentSemester}`;
     const response = await axios.get(currentSemesterUrl);
     const duplicateSchedulesData = response.data;
-    console.log(duplicateSchedulesData);
 
     const hasConflict = duplicateSchedulesData.some(item =>
       item.lesson === selectedClass.lesson && item.dayOfWeek === selectedClass.dayOfWeek
