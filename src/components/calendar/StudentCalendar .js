@@ -69,14 +69,14 @@ const StudentCalendar = () => {
 
     const [schedule, setSchedule] = useState([]);
     // const [studentId, setStudentId] = useState(null);
-    const [student, setStudent] = useState(null);
+    // const [student, setStudent] = useState(null);
 
 
     useEffect(() => {
         const storedStudent = localStorage.getItem('student');
         if (storedStudent) {
             const studentData = JSON.parse(storedStudent);
-            setStudent(studentData);
+            // setStudent(studentData);
             fetchScheduleData(studentData.id);
         }
     }, []);

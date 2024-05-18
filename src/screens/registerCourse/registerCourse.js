@@ -3,7 +3,8 @@ import './registerCourse.css'
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-
+// import { jsPDF } from "jspdf";
+// import html2canvas from 'html2canvas';
 
 function RegisterCourse() {
   const [selectedOption, setSelectedOption] = useState('');
@@ -14,6 +15,8 @@ function RegisterCourse() {
 
   const [studentId, setStudentId] = useState('');
   const [classId, setClassId] = useState('');
+  const [totalCredits, setTotalCredits] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const [selectedRadioSubject, setSelectedRadioSubject] = useState('');
   const [selectRadioClass, setSelectRadioClass] = useState('')
@@ -72,7 +75,9 @@ function RegisterCourse() {
         status,
         students,
         parent: selectedItem.parentId,
-        subjectName: selectedItem.name
+        subjectName: selectedItem.name,
+        credits: selectedItem.credits,
+        total: selectedItem.tuition * selectedItem.credits
       };
     }));
     console.log('Data with id:', dataWithId);
@@ -96,55 +101,92 @@ function RegisterCourse() {
   };
 
   const handleEnroll = async () => {
-    if (selectedClassStatus === false) {
-      alert('Không thể đăng ký môn học này do chưa tới thời gian đăng ký');
-      return;
-    }
-
-    const selectedClass = classData.find(item => item.id === classId);
-    console.log('Selected class:', selectedClass);
-
-    if (selectedClass && selectedClass.students >= selectedClass.maxEnrollment) {
-      alert('Không thể đăng ký môn học này do lớp đã đầy');
-      return;
-    }
-
-    if (selectedClass.parent !== null) {
-      const gradeUrl = `http://localhost:8081/course/${studentId}/grades`;
-      const responseGrade = await axios.get(gradeUrl);
-      const grades = responseGrade.data;
-      const isParentInGrades = grades.some(grade => grade.subjectId === selectedClass.parent);
-      if (isParentInGrades === false) {
-        alert(`Không thể đăng ký môn học này do chưa học môn tiên quyết: ${selectedClass.subjectName}`);
+    try {
+      if (selectedClassStatus === false) {
+        alert('Không thể đăng ký môn học này do chưa tới thời gian đăng ký');
         return;
       }
-    }
 
-    const currentSemesterUrl = `http://localhost:8081/course/${studentId}/duplicate-schedules?semesterId=${currentSemester}`;
-    const response = await axios.get(currentSemesterUrl);
-    const duplicateSchedulesData = response.data;
+      const selectedClass = classData.find(item => item.id === classId);
+      console.log('Selected class:', selectedClass);
 
-    const hasConflict = duplicateSchedulesData.some(item =>
-      item.lesson === selectedClass.lesson && item.dayOfWeek === selectedClass.dayOfWeek
-    );
+      if (selectedClass && selectedClass.students >= selectedClass.maxEnrollment) {
+        alert('Không thể đăng ký môn học này do lớp đã đầy');
+        return;
+      }
 
-    if (hasConflict) {
-      alert('Không thể đăng ký môn học này do trùng lịch');
-      return;
-    }
+      if (selectedClass.parent !== null) {
+        const gradeUrl = `http://localhost:8081/course/${studentId}/grades`;
+        const responseGrade = await axios.get(gradeUrl);
+        const grades = responseGrade.data;
+        const isParentInGrades = grades.some(grade => grade.subjectId === selectedClass.parent);
+        if (isParentInGrades === false) {
+          alert(`Không thể đăng ký môn học này do chưa học môn tiên quyết: ${selectedClass.subjectName}`);
+          return;
+        }
+      }
 
-    const confirmation = window.confirm("Bạn xác nhận đăng ký môn học này?");
-    if (confirmation) {
+      const total = totalCredits + selectedClass.credits;
+      console.log('Total credits:', total);
 
-      const url = 'http://localhost:8081/course/enroll';
+      if (totalCredits + selectedClass.credits > 30) {
+        alert('Không thể đăng ký môn học này do vượt quá 30 tín chỉ');
+        return;
+      }
 
-      const response = await axios.post(url, {
-        studentId: studentId,
-        classId: classId,
-      });
+      const currentSemesterUrl = `http://localhost:8081/course/${studentId}/duplicate-schedules?semesterId=${currentSemester}`;
+      const response = await axios.get(currentSemesterUrl);
+      const duplicateSchedulesData = response.data;
 
-      alert(response.data);
+      const hasConflict = duplicateSchedulesData.some(item =>
+        item.lesson === selectedClass.lesson && item.dayOfWeek === selectedClass.dayOfWeek
+      );
 
+      if (hasConflict) {
+        alert('Không thể đăng ký môn học này do trùng lịch');
+        return;
+      }
+
+      const confirmation = window.confirm("Bạn xác nhận đăng ký môn học này?");
+      if (confirmation) {
+
+        const url = 'http://localhost:8081/course/enroll';
+
+        const response = await axios.post(url, {
+          studentId: studentId,
+          classId: classId,
+          subjectName: selectedClass.subjectName,
+          totalPrice: totalPrice + selectedClass.total
+        });
+
+        alert(response.data);
+
+        window.location.reload();
+
+        // await handleClassResigter(studentId, currentSemester);
+
+        // const currentDate = new Date();
+        // const formattedDate = currentDate.toLocaleDateString('vi-VN');
+
+        // const input = document.querySelector('.RegisterCourse-semester');
+        // html2canvas(input)
+        //   .then((canvas) => {
+        //     const imgData = canvas.toDataURL('image/png');
+        //     const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+        //     const imgProps = pdf.getImageProperties(imgData);
+        //     const pdfWidth = pdf.internal.pageSize.getWidth();
+        //     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        //     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        //     pdf.save(`${studentId}/date-${formattedDate}/semester-${currentSemester}/classId-${selectedClass.id}.pdf`);
+        //   })
+        //   .then(() => {
+        //     // Reload the page after the PDF has been saved
+        //     window.location.reload();
+        //   });
+
+      }
+    } catch (error) {
+      alert('Vui lòng chọn môn học và lớp học để tiến hành đăng ký');
       window.location.reload();
     }
   };
@@ -215,16 +257,8 @@ function RegisterCourse() {
           setTableData(dataWithId);
 
           //Lấy lớp học đã đăng ký trong kỳ này
-          const classesUrl = `http://localhost:8081/course/${parsedStudent.id}/classes?semesterId=${semester.id}`;
-          const response4 = await axios.get(classesUrl);
-          const classWithId = response4.data.map((item, index) => ({
-            stt: index + 1,
-            ...item
-          }));
-          console.log('Class with id:', classWithId);
-          setRegis(classWithId);
+          handleClassResigter(parsedStudent.id, semester.id);
 
-          // Get students for the class
         } catch (error) {
           console.log('Error:', error);
         }
@@ -233,6 +267,30 @@ function RegisterCourse() {
       fetchData();
     }
   }, []);
+
+  async function handleClassResigter(studentId, semesterId) {
+    return new Promise(async (resolve, reject) => {
+
+      const classesUrl = `http://localhost:8081/course/${studentId}/classes?semesterId=${semesterId}`;
+      const response4 = await axios.get(classesUrl);
+      const classWithId = response4.data.map((item, index) => ({
+        stt: index + 1,
+        ...item
+      }));
+      console.log('Class with id:', classWithId);
+
+      const totalCreditsData = response4.data.reduce((total, item) => total + item.credits, 0);
+      setTotalCredits(totalCreditsData);
+
+      const totalPriceData = response4.data.reduce((total, item) => total + item.total, 0);
+      setTotalPrice(totalPriceData);
+      setRegis(classWithId);
+
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      resolve();
+    });
+  }
 
   return (
     <div className='RegisterCourse-body'>
@@ -459,7 +517,7 @@ function RegisterCourse() {
                 <td>{row.name}</td>
                 <td>{row.classId}</td>
                 <td>{row.credits}</td>
-                <td>{row.total}</td>
+                <td>{row.total.toLocaleString('en-US')}</td>
                 <td>{row.regisDate}</td>
                 <td>{row.dayOfWeek} ({row.lesson})</td>
                 <td>{row.classroom}</td>
@@ -468,6 +526,10 @@ function RegisterCourse() {
             ))}
           </tbody>
         </table>
+
+        <div className='RegisterCourse-body-head'>
+          <h6 style={{ color: 'red' }}>TỔNG HỌC PHÍ CẦN ĐÓNG: {totalPrice.toLocaleString('en-US')} VNĐ</h6>
+        </div>
 
       </div>
 

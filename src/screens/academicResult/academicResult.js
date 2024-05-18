@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function AcademicResult() {
 
-    const [student, setStudent] = useState(null);
+    // const [student, setStudent] = useState(null);
     const [semesters, setSemesters] = useState([]);
     const [subjectsAndGrades, setSubjectsAndGrades] = useState([]);
     const [semesterAverages, setSemesterAverages] = useState({});
@@ -16,24 +16,42 @@ function AcademicResult() {
         const storedStudent = localStorage.getItem('student');
         if (storedStudent) {
             const studentData = JSON.parse(storedStudent);
-            setStudent(studentData);
-            fetchSemesters(studentData.id);
+            // setStudent(studentData);
+            // fetchSemesters(studentData.id);
+
+            const fetchData = async () => {
+                try {
+                    const response = await axios.get(`http://localhost:8081/${studentData.id}/semesters`);
+                    setSemesters(response.data);
+                    console.log(response.data);
+                    // Fetch grades for all semesters
+                    await Promise.all(response.data.map(semester => fetchGrades(studentData.id, semester.id)));
+                    await Promise.all(response.data.map(semester => fetchSemesterAverage(studentData.id, semester.id))); // Gọi API để lấy điểm trung bình học kì
+
+                } catch (error) {
+                    console.error('Error fetching semesters:', error);
+                }
+            };
+
+            fetchData();
         }
     }, []);
 
-    const fetchSemesters = async (studentId) => {
-        try {
-            const response = await axios.get(`http://localhost:8081/${studentId}/semesters`);
-            setSemesters(response.data);
-            console.log(response.data);
-            // Fetch grades for all semesters
-            await Promise.all(response.data.map(semester => fetchGrades(studentId, semester.id)));
-            await Promise.all(response.data.map(semester => fetchSemesterAverage(studentId, semester.id))); // Gọi API để lấy điểm trung bình học kì
+    // const fetchSemesters = async (studentId) => {
+    //     try {
+    //         const response = await axios.get(`http://localhost:8081/${studentId}/semesters`);
+    //         setSemesters(response.data);
+    //         console.log(response.data);
+    //         // Fetch grades for all semesters
+    //         await Promise.all(response.data.map(semester => fetchGrades(studentId, semester.id)));
+    //         await Promise.all(response.data.map(semester => fetchSemesterAverage(studentId, semester.id))); // Gọi API để lấy điểm trung bình học kì
 
-        } catch (error) {
-            console.error('Error fetching semesters:', error);
-        }
-    };
+    //     } catch (error) {
+    //         console.error('Error fetching semesters:', error);
+    //     }
+    // };
+
+
 
     const fetchGrades = async (studentId, semesterId) => {
         try {
