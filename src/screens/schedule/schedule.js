@@ -21,11 +21,6 @@ function Schedule() {
           <StudentCalendar />
         </div>
       </div>
-      {/* <Routes>
-        <Route path="/thong-tin-chung" element={<Login />} />
-        <Route path="/AcademicResult" element={<AcademicResult />} />
-        <Route path="/LichTheoTuan" element={<Login />} />
-      </Routes> */}
     </div>
   );
 }

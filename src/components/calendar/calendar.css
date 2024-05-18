@@ -72,6 +72,16 @@
     /* Khoảng cách giữa các nút */
 }
 
+.btn-hientai:hover,
+.btn-inlich:hover,
+.btn-trove:hover,
+.btn-tieptuc:hover {
+    /* Định nghĩa các quy tắc cho button khi được hover */
+    background-color: #40a2f8;
+    /* Màu nhạt hơn */
+}
+
+
 
 .calendar-table {
 

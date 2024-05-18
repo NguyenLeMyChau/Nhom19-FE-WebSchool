@@ -10,7 +10,7 @@ const NavigationBar = ({ className }) => {
 
   const hocTapItems = [
     { title: "Kết quả học tập", value: "AcademicResult" },
-    { title: "Lịch theo tuần", value: "WeeklySchedule" },
+    { title: "Lịch theo tuần", value: "schedule" },
     { title: "Lịch theo tiến độ", value: "progress-schedule" },
     { title: "Lịch học lớp danh nghĩa", value: "class-schedule" }
   ];

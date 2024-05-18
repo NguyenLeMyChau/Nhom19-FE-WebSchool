@@ -19,6 +19,7 @@ const StudentCalendar = () => {
     };
 
     const [currentDate, setCurrentDate] = useState(getStartOfWeek(new Date()));
+    const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
 
 
     const getWeekday = (date) => {
@@ -61,8 +62,9 @@ const StudentCalendar = () => {
     });
 
     const handleDateChange = (event) => {
-        const selectedDate = new Date(event.target.value);
-        setCurrentDate(getStartOfWeek(selectedDate));
+        const newDate = new Date(event.target.value);
+        setCurrentDate(getStartOfWeek(newDate));
+        setSelectedDate(event.target.value);
     };
 
     const [schedule, setSchedule] = useState([]);
@@ -170,6 +172,7 @@ const StudentCalendar = () => {
                             name="dateNgayXemLich"
                             type="date"
                             className="date-input"
+                            value={selectedDate}
                             onChange={handleDateChange} // Xử lý sự kiện thay đổi giá trị ngày
                         />
                     </div>

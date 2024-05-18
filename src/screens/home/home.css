@@ -97,7 +97,7 @@
 
 .home-form-group span {
     font-weight: 600;
-    color:#384289;
+    color: #384289;
 }
 
 .home-schedule-calendar-text {
@@ -105,6 +105,8 @@
     width: 48%;
     height: 100%;
     border-radius: 10px;
+    text-align: left;
+
 }
 
 .home-option {
@@ -144,13 +146,13 @@
     justify-content: space-between;
 }
 
-.home-footer-title{
+.home-footer-title {
     background-color: white;
     padding: 15px 10px;
     height: 40vh;
 }
 
-.home-row{
+.home-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -159,7 +161,7 @@
     margin-bottom: 10px;
 }
 
-.home-column{
+.home-column {
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid #C4C4C4;

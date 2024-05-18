@@ -106,11 +106,26 @@ function Home() {
                     </div>
 
                     <div className='home-schedule-calendar'>
-                        <div className='home-schedule-calendar-text' style={{ backgroundColor: '#e0fbff', color: '#4da1e8' }}>
-                            <p>Lịch học trong tuần</p>
+                        <button onClick={navigateToSchedule} className='home-schedule-calendar-text' style={{ backgroundColor: '#e0fbff', color: '#4da1e8', border: 'none' }}>
+                            <p >Lịch học trong tuần</p>
                             <p style={{ fontSize: 42, lineHeight: 1, marginTop: -3 }}>4</p>
                             <p style={{ fontSize: 14, lineHeight: 1, marginTop: -3 }}>Xem chi tiết</p>
-                        </div>
+                        </button>
+                        {/* <button
+                            className='home-schedule-calendar-text'
+                            style={{
+                                backgroundColor: '#e0fbff',
+                                color: '#4da1e8',
+                                // border: 'none',
+                                // padding: 0, // Thêm padding: 0 để loại bỏ khoảng cách mặc định của button
+                                cursor: 'pointer' // Đảm bảo con trỏ dạng tay khi rê chuột vào toàn bộ button
+                            }}
+                        >
+                            <p style={{ cursor: 'pointer', margin: 0 }} onClick={navigateToSchedule}>Lịch học trong tuần</p>
+                            <p style={{ fontSize: 42, lineHeight: 1, margin: 0 }}>4</p>
+                            <p style={{ fontSize: 14, lineHeight: 1, margin: 0 }}>Xem chi tiết</p>
+                        </button> */}
+
 
                         <div className='home-schedule-calendar-text' style={{ backgroundColor: '#fff2d4', color: '#ff9205' }}>
                             <p>Lịch thi trong tuần</p>
@@ -125,24 +140,24 @@ function Home() {
             <div className='home-option'>
 
                 <div className='col-sm-2 home-option-form'>
-                    <p onClick={navigateToSchedule}>Lịch theo tuần</p>
+                    <p style={{ cursor: 'pointer' }} onClick={navigateToSchedule}>Lịch theo tuần</p>
                 </div>
 
                 <div className='col-sm-2 home-option-form'>
-                    <p onClick={() => window.location.href = '/AcademicResult'}>Kết quả học tập</p>
+                    <p style={{ cursor: 'pointer' }} onClick={() => window.location.href = '/AcademicResult'}>Kết quả học tập</p>
 
                 </div>
 
                 <div className='col-sm-2 home-option-form'>
-                    <p onClick={() => window.location.href = '/RegisterCourse'}>Đăng ký học phần</p>
+                    <p style={{ cursor: 'pointer' }} onClick={() => window.location.href = '/RegisterCourse'}>Đăng ký học phần</p>
                 </div>
 
                 <div className='col-sm-2 home-option-form'>
-                    <p>Tra cứu công nợ</p>
+                    <p style={{ cursor: 'pointer' }}>Tra cứu công nợ</p>
                 </div>
 
                 <div className='col-sm-2 home-option-form' style={{ marginRight: 0 }}>
-                    <p>Nhắc nhở</p>
+                    <p style={{ cursor: 'pointer' }}>Nhắc nhở</p>
                 </div>
 
             </div>

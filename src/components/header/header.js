@@ -7,7 +7,7 @@ function Options() {
     localStorage.removeItem('student'); // Xóa student khỏi localStorage
     window.location.href = '/'; // Chuyển hướng về trang login
   }
-  
+
   return (
     <div className='options'>
       <p className='clickable-p'>Thông tin cá nhân</p>
@@ -40,10 +40,12 @@ function Header() {
 
         <input type="search" placeholder="Tìm kiếm..." />
 
-        <p>Trang chủ</p>
-        <p>Tin tức</p>
+        <p style={{ cursor: 'pointer' }} onClick={() => window.location.href = '/home'}>
+          Trang chủ
+        </p>
+        <p style={{ cursor: 'pointer' }}>Tin tức</p>
         <div style={{ position: 'relative' }}>
-          <p onClick={handleClick}>
+          <p style={{ cursor: 'pointer' }} onClick={handleClick}>
 
             <img
               src={"https://avatar-zalo.s3.ap-southeast-1.amazonaws.com/zalo/W660ed5529708027aa62bc682_W1713430550705.jpg"}
