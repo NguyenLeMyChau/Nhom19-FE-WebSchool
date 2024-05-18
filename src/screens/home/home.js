@@ -28,7 +28,7 @@ function Home() {
     };
 
     // Tổng số
-    const total = 156;
+    const total = student ? student.totalCredits : 0;
     // Số đạt được
     const achieved = student ? student.completedCredits : 0;
 

@@ -10,6 +10,7 @@ function RegisterCourse() {
   const [selectedRadio, setSelectedRadio] = useState('HỌC MỚI'); // new state variable for radio buttons
   const [selectedCheckbox, setSelectedCheckbox] = useState(false);
   const [selectedClassStatus, setSelectedClassStatus] = useState(null);
+  const [currentSemester, setCurrentSemester] = useState('');
 
   const [studentId, setStudentId] = useState('');
   const [classId, setClassId] = useState('');
@@ -83,8 +84,14 @@ function RegisterCourse() {
   //   setSelectRadioClassDetail(event.target.value);
   // }
 
+  const handleCheckboxChange = async (event) => {
+    setSelectedCheckbox(event.target.checked);
+
+    console.log('Hiển thị học phần không trùng lịch:', event.target.checked);
+
+  };
+
   const handleEnroll = async () => {
-    console.log('selectedClassStatus:', selectedClassStatus);
     if (selectedClassStatus === false) {
       alert('Không thể đăng ký môn học này do chưa tới thời gian đăng ký');
       return;
@@ -93,9 +100,22 @@ function RegisterCourse() {
     const selectedClass = classData.find(item => item.id === classId);
     console.log('Selected class:', selectedClass);
 
-    // Check if the class is full
     if (selectedClass && selectedClass.students >= selectedClass.maxEnrollment) {
       alert('Không thể đăng ký môn học này do lớp đã đầy');
+      return;
+    }
+
+    const currentSemesterUrl = `http://localhost:8081/course/${studentId}/duplicate-schedules?semesterId=${currentSemester}`;
+    const response = await axios.get(currentSemesterUrl);
+    const duplicateSchedulesData = response.data;
+    console.log(duplicateSchedulesData);
+
+    const hasConflict = duplicateSchedulesData.some(item =>
+      item.lesson === selectedClass.lesson && item.dayOfWeek === selectedClass.dayOfWeek
+    );
+
+    if (hasConflict) {
+      alert('Không thể đăng ký môn học này do trùng lịch');
       return;
     }
 
@@ -115,6 +135,22 @@ function RegisterCourse() {
     }
   };
 
+  const unenrollCourse = async (studentId, classId) => {
+    try {
+      const confirmation = window.confirm("Bạn xác nhận huỷ đăng ký môn học này?");
+      if (confirmation) {
+        const url = `http://localhost:8081/course/un-enroll?studentId=${studentId}&classId=${classId}`;
+
+        const response = await axios.delete(url);
+
+        alert(response.data);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error('Error while unenrolling course:', error);
+    }
+  };
+
   const radioOptions = [
     { label: 'HỌC MỚI', value: 'HỌC MỚI' },
     { label: 'HỌC LẠI', value: 'HỌC LẠI' },
@@ -126,7 +162,7 @@ function RegisterCourse() {
     if (storedStudent) {
       const parsedStudent = JSON.parse(storedStudent);
       console.log('Parsed student:', parsedStudent);
-      setStudentId(parsedStudent.id)
+      setStudentId(parsedStudent.id);
 
       const fetchData = async () => {
         try {
@@ -136,8 +172,7 @@ function RegisterCourse() {
           const semester = response1.data;
           const formattedSemester = `${semester.name} (${semester.course})`;
           console.log('Formatted semester: ', formattedSemester);
-          console.log('Index:', semester.startDate);
-          console.log('Index:', semester.endDate);
+          setCurrentSemester(semester.id);
 
           const currentDate = new Date();
           const startDate = new Date(semester.startDate);
@@ -166,7 +201,7 @@ function RegisterCourse() {
           setTableData(dataWithId);
 
           //Lấy lớp học đã đăng ký trong kỳ này
-          const classesUrl = `http://localhost:8081/course/${parsedStudent.id}/classes`;
+          const classesUrl = `http://localhost:8081/course/${parsedStudent.id}/classes?semesterId=${semester.id}`;
           const response4 = await axios.get(classesUrl);
           const classWithId = response4.data.map((item, index) => ({
             stt: index + 1,
@@ -268,7 +303,7 @@ function RegisterCourse() {
               id="newCheckbox"
               name="newCheckbox"
               checked={selectedCheckbox}
-              onChange={(event) => setSelectedCheckbox(event.target.checked)}
+              onChange={handleCheckboxChange}
             />
             <label htmlFor="newCheckbox">HIỂN THỊ LỚP HỌC PHẦN KHÔNG TRÙNG LỊCH</label>
           </div>
@@ -388,6 +423,8 @@ function RegisterCourse() {
               <th>TC</th>
               <th>Học phí</th>
               <th>Ngày đăng ký</th>
+              <th>Lịch học</th>
+              <th>Phòng học</th>
               <th>Trạng thái lớp học phần</th>
             </tr>
           </thead>
@@ -396,7 +433,13 @@ function RegisterCourse() {
           <tbody>
             {regis.map((row, index) => (
               <tr key={index}>
-                <td><FontAwesomeIcon icon={faTrashCan} className='text-danger' /></td>
+                <td>
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    className='text-danger'
+                    onClick={() => unenrollCourse(studentId, row.classId)}
+                  />
+                </td>
                 <td>{row.stt}</td>
                 <td>{row.classId}</td>
                 <td>{row.name}</td>
@@ -404,6 +447,8 @@ function RegisterCourse() {
                 <td>{row.credits}</td>
                 <td>{row.total}</td>
                 <td>{row.regisDate}</td>
+                <td>{row.dayOfWeek} ({row.lesson})</td>
+                <td>{row.classroom}</td>
                 <td>{selectedClassStatus ? <FontAwesomeIcon icon={faCircleCheck} className='text-success' /> : <FontAwesomeIcon icon={faCircleXmark} className='text-danger' />}</td>
               </tr>
             ))}
